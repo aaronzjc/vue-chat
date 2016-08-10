@@ -1,8 +1,8 @@
-# vue-chat
+# 说明
 
-> vue-chat is a chtting app using Vue !
+> 使用vue.js, SUI, WebSocket开发的的WebAPP.
 
-## Build Setup
+## 构建
 
 ``` bash
 # install dependencies
@@ -14,14 +14,8 @@ npm run dev
 # build for production with minification
 npm run build
 
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
 # run all tests
 npm test
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+开发中...
