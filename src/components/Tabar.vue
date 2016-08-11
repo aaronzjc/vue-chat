@@ -4,6 +4,7 @@
   <a class="tab-item external active" v-link="{path: '/chats', activeClass: 'active'}">
       <span class="icon icon-message"></span>
       <span class="tab-label">消息</span>
+      <span class="badge">5</span>
   </a>
   <a class="tab-item external" v-link="{path: '/friends', activeClass: 'active'}">
       <span class="icon icon-friends"></span>

@@ -6,7 +6,7 @@
       <div class="item-title-row">
         <div class="item-title">{{ user.name }}</div>
       </div>
-      <div class="item-subtitle">{{ user.motto }}</div>
+      <div class="item-subtitle">{{ user.subinfo }}</div>
     </div>
   </div>
 </li>

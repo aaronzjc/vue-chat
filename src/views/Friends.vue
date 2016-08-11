@@ -1,6 +1,6 @@
 <template>
 <p-header title='好友'>
-  <button class="button button-link button-nav pull-right">
+  <button class="button button-link button-nav pull-right" @click="this.$router.go({name:'addFriend'})">
     添加
   </button>
 </p-header>

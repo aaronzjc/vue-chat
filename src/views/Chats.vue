@@ -1,9 +1,8 @@
 <template>
 <p-header title='消息'>
-  <a class="icon icon icon-menu pull-right"></a>
 </p-header>
 <Tabar></Tabar>
-<chat-list title="聊天列表"></chat-list>
+<chat-list title="消息列表"></chat-list>
 </template>
 
 <script>

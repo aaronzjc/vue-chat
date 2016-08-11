@@ -10,14 +10,14 @@
 </template>
 
 <script>
-import Item from './Item.vue'
+import Item from '../Item.vue'
 import $ from 'zepto'
 
 export default {
   props: ['title'],
   data: function () {
     return {
-      chatList: [{name: '飘飘', motto: '今天天气好好哟~'}, {name: '叉叉', motto: '七夕快乐哈~'}]
+      chatList: [{name: '飘飘', subinfo: '今天天气好好哟~'}, {name: '叉叉', subinfo: '七夕快乐哈~'}]
     }
   },
   computed: {},

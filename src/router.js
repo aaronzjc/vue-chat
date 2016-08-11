@@ -2,7 +2,13 @@ export default function (router) {
   router.map({
     '*': {
       component: function (resolve) {
-        require(['./components/hello'], resolve)
+        require(['./views/login'], resolve)
+      }
+    },
+    '/login': {
+      name: 'login',
+      component: function (resolve) {
+        require(['./views/Login'], resolve)
       }
     },
     '/chats': {
@@ -15,6 +21,12 @@ export default function (router) {
       name: 'friends',
       component: function (resolve) {
         require(['./views/Friends'], resolve)
+      }
+    },
+    '/addFriend': {
+      name: 'addFriend',
+      component: function (resolve) {
+        require(['./views/addFriend'], resolve)
       }
     },
     '/settings': {

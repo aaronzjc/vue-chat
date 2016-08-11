@@ -163,6 +163,7 @@ ul.message-list .message-item {
   font-size: 0.7rem;
   color:#fff;
   word-wrap: break-word;
+  box-shadow: 2px 2px 3px #ccc;
 }
 .clear{
   clear: both;
