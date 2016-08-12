@@ -1,6 +1,6 @@
 <template>
 <p-header title='聊天'>
-  <button class="button button-link button-nav pull-left" @click="this.$router.go({'name': 'chats'})">
+  <button class="button button-link button-nav pull-left" @click="this.$router.go({'name': 'chatlist'})">
   <span class="icon icon-left"></span>
   返回
 </button>

@@ -11,34 +11,39 @@ export default function (router) {
         require(['./views/Login'], resolve)
       }
     },
-    '/chats': {
-      name: 'chats',
+    '/chatlist': {
+      name: 'chatlist',
+      auth: true,
       component: function (resolve) {
-        require(['./views/Chats'], resolve)
+        require(['./views/ChatList'], resolve)
       }
     },
     '/friends': {
       name: 'friends',
+      auth: true,
       component: function (resolve) {
         require(['./views/Friends'], resolve)
       }
     },
     '/addFriend': {
       name: 'addFriend',
+      auth: true,
       component: function (resolve) {
-        require(['./views/addFriend'], resolve)
+        require(['./views/AddFriend'], resolve)
       }
     },
     '/settings': {
       name: 'settings',
+      auth: true,
       component: function (resolve) {
         require(['./views/Settings'], resolve)
       }
     },
-    '/chatting': {
-      name: 'chatting',
+    '/chatbox': {
+      name: 'chatbox',
+      auth: true,
       component: function (resolve) {
-        require(['./views/chatting'], resolve)
+        require(['./views/ChatBox'], resolve)
       }
     },
     '/tabar': {

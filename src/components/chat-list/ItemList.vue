@@ -26,7 +26,7 @@ export default {
   methods: {
     startChatting: function (index) {
       $.toast(`开始和${this.chatList[index]['name']}聊天`)
-      this.$router.go({name: 'chatting'})
+      this.$router.go({name: 'chatbox'})
     }
   },
   components: {

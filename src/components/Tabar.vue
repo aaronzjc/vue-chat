@@ -1,7 +1,7 @@
 <template>
 <!-- 工具栏 -->
 <nav class="bar bar-tab">
-  <a class="tab-item external active" v-link="{path: '/chats', activeClass: 'active'}">
+  <a class="tab-item external active" v-link="{path: '/chatlist', activeClass: 'active'}">
       <span class="icon icon-message"></span>
       <span class="tab-label">消息</span>
       <span class="badge">5</span>

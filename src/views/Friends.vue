@@ -5,13 +5,13 @@
   </button>
 </p-header>
 <Tabar></Tabar>
-<user-list></user-list>
+<group-list></group-list>
 </template>
 
 <script>
 import Tabar from '../components/Tabar'
 import PHeader from '../components/PHeader'
-import UserList from '../components/UserList'
+import GroupList from '../components/contact-list/GroupList.vue'
 
 export default {
   data: function () {
@@ -25,7 +25,7 @@ export default {
   components: {
     Tabar,
     PHeader,
-    UserList
+    GroupList
   }
 }
 </script>

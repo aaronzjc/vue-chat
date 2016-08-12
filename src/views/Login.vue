@@ -35,6 +35,7 @@
 
 <script>
 import PHeader from '../components/PHeader'
+import Config from '../assets/js/config'
 
 export default {
   data () {
@@ -46,7 +47,12 @@ export default {
   ready () {},
   methods: {
     login () {
-      this.$router.go({name: 'chats'})
+      this.$http.post(Config.BASE_URL + Config.API.login, {
+        username: this.username,
+        password: this.password
+      }).then((response) => {
+        console.log(response.json())
+      })
     }
   },
   components: {
