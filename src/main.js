@@ -8,6 +8,7 @@ import App from './App'
 Vue.use(VueRouter)
 Vue.use(VueResource)
 
+// 路由配置
 var router = new VueRouter({
   hashbang: true,
   history: false,
@@ -16,13 +17,13 @@ var router = new VueRouter({
 })
 
 RouterConfig(router)
-// Vue.http.options.xhr = {withCredentials: true}
 router.beforeEach((transition) => {
   let token = window.localStorage.getItem('token')
   if (transition.to.auth && (!token || token === null)) { // need to auth but token is not set
-    // transition.redirect({name: 'login'})
+    transition.redirect('/login')
   }
-  // Vue.http.headers.common['Authorization'] = 'Bearer ' + token
+  console.log('visiting' + transition.to.path)
+  Vue.http.headers.common['Authorization'] = 'Bearer ' + token
   transition.next()
 })
 

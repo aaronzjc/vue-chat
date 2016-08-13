@@ -3,13 +3,15 @@
 <li v-for="item in group.list">
   <div class="item-content">
     <div class="item-inner">
-      <div class="item-title">{{ item.title }}</div>
+      <div @click="chat(item)" class="item-title">{{ item.nickname }}</div>
     </div>
   </div>
 </li>
 </template>
 
 <script>
+import $ from 'zepto'
+
 export default {
   props: ['group'],
   data: function () {
@@ -19,7 +21,12 @@ export default {
   computed: {},
   ready: function () {},
   attached: function () {},
-  methods: {},
+  methods: {
+    chat: function (item) {
+      $.toast('开始聊天')
+      this.$router.go({name: 'chatbox', params: {uid: item.id}})
+    }
+  },
   components: {}
 }
 </script>

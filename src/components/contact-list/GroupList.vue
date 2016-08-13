@@ -14,9 +14,10 @@
 import Group from './Group.vue'
 
 export default {
+  props: ['groups'],
   data: function () {
     return {
-      groups: [{title: 'A', list: [{title: '阿武'}, {title: '吖'}, {title: '安格格'}]}, {title: 'C', list: [{title: '曹操'}]}]
+      // groups: [{title: 'A', list: [{title: '阿武'}, {title: '吖'}, {title: '安格格'}]}, {title: 'C', list: [{title: '曹操'}]}]
     }
   },
   computed: {},

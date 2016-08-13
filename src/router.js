@@ -39,7 +39,7 @@ export default function (router) {
         require(['./views/Settings'], resolve)
       }
     },
-    '/chatbox': {
+    '/chatbox/:uid': {
       name: 'chatbox',
       auth: true,
       component: function (resolve) {

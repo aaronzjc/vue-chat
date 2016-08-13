@@ -1,5 +1,5 @@
 <template>
-<p-header title='聊天'>
+<p-header title="聊天">
   <button class="button button-link button-nav pull-left" @click="this.$router.go({'name': 'chatlist'})">
   <span class="icon icon-left"></span>
   返回
@@ -107,24 +107,49 @@
 </div>
 <div class="bar chat-input-box row">
     <div class="search-input col-80">
-      <input type="search" placeholder='输入消息...'/>
+      <input type="search" v-model="data.message" placeholder='输入消息...'/>
     </div>
-    <a class="button button-fill button-primary col-20">发送</a>
+    <a @click="sendMsg" class="button button-fill button-primary col-20">发送</a>
 </div>
 </template>
 
 <script>
 import PHeader from '../components/PHeader'
+import {ws} from '../store/Websocket'
+import $ from 'zepto'
 
 export default {
   data: function () {
     return {
+      data: {
+        message: '',
+        from: '',
+        to: ''
+      }
+    }
+  },
+  route: {
+    data: function (transition) {
+      if (transition.to.params) {
+        this.data.to = transition.to.params.uid
+        this.data.from = window.localStorage.getItem('uid')
+      }
     }
   },
   computed: {},
   ready: function () {},
   attached: function () {},
-  methods: {},
+  methods: {
+    sendMsg: function () {
+      let data = {
+        cmd: 'chat',
+        data: this.data
+      }
+      console.log(ws)
+      ws.ws.send(JSON.stringify(data))
+      $.toast('发送成功')
+    }
+  },
   components: {
     PHeader
   }

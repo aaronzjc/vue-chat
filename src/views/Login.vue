@@ -36,6 +36,8 @@
 <script>
 import PHeader from '../components/PHeader'
 import Config from '../assets/js/config'
+import $ from 'zepto'
+import {ws} from '../store/Websocket'
 
 export default {
   data () {
@@ -51,7 +53,13 @@ export default {
         username: this.username,
         password: this.password
       }).then((response) => {
-        console.log(response.json())
+        window.localStorage.setItem('token', response.json().token)
+        window.localStorage.setItem('uid', response.json().uid)
+        // 连接Websocket服务器
+        ws.connect(response.json().uid)
+        this.$router.go({name: 'chatlist'})
+      }, (response) => {
+        $.toast('登录失败')
       })
     }
   },
