@@ -31,14 +31,12 @@ export default {
         if (response.status === 401) {
           this.$router.go({name: 'login'})
         }
-        console.log(response)
       })
     }
   },
   ready: function () {
     let contactList = window.localStorage.getItem('contact-list')
     this.groups = JSON.parse(contactList)
-    console.log(this.groups)
   },
   attached: function () {},
   methods: {},
