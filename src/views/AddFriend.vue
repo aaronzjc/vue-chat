@@ -10,7 +10,7 @@
 <div class="content-block-title">检索结果</div>
 <div class="list-block media-list todo-items">
     <ul>
-      <Item @click="addFriend($index)" :user="user" v-for="user in userList"></Item>
+      <!-- <Item @click="addFriend($index)" :user="user" v-for="user in userList"></Item> -->
     </ul>
 </div>
 </div>
@@ -21,7 +21,7 @@
 import $ from 'zepto'
 import PHeader from '../components/PHeader'
 import SearchBar from '../components/SearchBar'
-import Item from '../components/Item'
+// import Item from '../components/Item'
 
 export default {
   data: function () {
@@ -44,8 +44,7 @@ export default {
   },
   components: {
     PHeader,
-    SearchBar,
-    Item
+    SearchBar
   }
 }
 </script>

@@ -4,7 +4,7 @@
   <a class="tab-item external active" v-link="{path: '/chatlist', activeClass: 'active'}">
       <span class="icon icon-message"></span>
       <span class="tab-label">消息</span>
-      <span class="badge">5</span>
+      <span v-show="hasMessage" class="badge">{{ unreadCnt }}</span>
   </a>
   <a class="tab-item external" v-link="{path: '/friends', activeClass: 'active'}">
       <span class="icon icon-friends"></span>
@@ -18,9 +18,22 @@
 </template>
 
 <script>
+import {store} from '../store/GlobalStore'
+
 export default {
   data: function () {
     return {
+      unreadCnt: store.unreadCnt
+    }
+  },
+  computed: {
+    hasMessage: function () {
+      return this.unreadCnt > 0
+    }
+  },
+  events: {
+    'updateUnread': function () {
+      this.unreadCnt = store.unreadCnt
     }
   }
 }

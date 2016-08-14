@@ -3,6 +3,7 @@ export default {
   API: {
     login: '/auth/login',
     friend: '/friend',
+    chatList: '/chat',
     searchFriend: '/friend/search'
   }
 }

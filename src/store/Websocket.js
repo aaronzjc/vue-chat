@@ -11,15 +11,16 @@ const ws = {
     }
     this.ws.onmessage = (event) => {
       console.log(event)
-      // let response = JSON.parse(event.data)
+      let response = JSON.parse(event.data)
       store.messageList.push({
-        content: event.data,
+        content: response.message,
         position: 'left'
       })
       console.log(event)
     }
     this.ws.onclose = () => {
       // todo
+      console.log('连接被关闭了')
       this.ws = undefined
     }
   }
