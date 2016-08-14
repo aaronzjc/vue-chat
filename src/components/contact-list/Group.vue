@@ -10,8 +10,6 @@
 </template>
 
 <script>
-import $ from 'zepto'
-
 export default {
   props: ['group'],
   data: function () {
@@ -23,7 +21,6 @@ export default {
   attached: function () {},
   methods: {
     chat: function (item) {
-      $.toast('开始聊天')
       this.$router.go({name: 'chatbox', params: {uid: item.id}})
     }
   },
