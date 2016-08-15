@@ -2,7 +2,7 @@
 <p-header title='聊天'>
 </p-header>
 <Tabar></Tabar>
-<chat-list :chat-list="chatList" title="消息列表"></chat-list>
+<chat-list :chat-list="chatList" title="未读消息"></chat-list>
 </template>
 
 <script>

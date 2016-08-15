@@ -4,6 +4,7 @@ export default {
     login: '/auth/login',
     friend: '/friend',
     chatList: '/chat',
+    preMessages: '/messages',
     searchFriend: '/friend/search'
   }
 }

@@ -18,6 +18,10 @@ npm run build
 npm test
 ```
 
+## 预览
+
+![preview](https://github.com/aaronzjc/Personal_Toys/blob/master/Note/img/app.png)
+
 ## 开发中...
 
 重要|遗留的问题

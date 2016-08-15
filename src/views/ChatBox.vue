@@ -19,6 +19,7 @@
 <script>
 import PHeader from '../components/PHeader'
 import MessageList from '../components/MessageList'
+import Config from '../assets/js/config'
 import {store} from '../store/GlobalStore'
 import {ws} from '../store/Websocket'
 import $ from 'zepto'
@@ -36,17 +37,26 @@ export default {
   },
   route: {
     data: function (transition) {
+      const _self = this
       if (transition.to.params) {
         this.data.to = transition.to.params.uid
         this.data.from = window.localStorage.getItem('uid')
+        let messageList = store.messageList
+        console.log(messageList.length)
+        if (messageList.length === 0) {
+          this.$http.get(Config.BASE_URL + Config.API.preMessages + '/' + this.data.to).then((response) => {
+            console.log(response.json())
+            _self.messageList = response.json()
+            store.messageList = _self.messageList
+          })
+        } else {
+          this.messageList = messageList
+        }
       }
     }
   },
   computed: {},
-  ready: function () {
-    console.log(store)
-    this.messageList = store.messageList
-  },
+  ready: function () {},
   attached: function () {},
   methods: {
     sendMsg: function () {
