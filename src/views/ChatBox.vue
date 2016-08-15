@@ -41,22 +41,17 @@ export default {
       if (transition.to.params) {
         this.data.to = transition.to.params.uid
         this.data.from = window.localStorage.getItem('uid')
-        let messageList = store.messageList
         // 初始化聊天记录
-        if (messageList.length === 0) {
-          this.$http.get(Config.BASE_URL + Config.API.preMessages + '/' + this.data.to).then((response) => {
-            console.log(response.json())
-            // 消息获取成功才可以
-            _self.messageList = response.json()
-            store.messageList = _self.messageList
-          }, (response) => {
-            if (response.status === 401) {
-              this.$router.go({name: 'login'})
-            }
-          })
-        } else {
-          this.messageList = messageList
-        }
+        this.$http.get(Config.BASE_URL + Config.API.preMessages + '/' + this.data.to).then((response) => {
+          console.log(response.json())
+          // 消息获取成功才可以
+          _self.messageList = response.json()
+          store.messageList = _self.messageList
+        }, (response) => {
+          if (response.status === 401) {
+            this.$router.go({name: 'login'})
+          }
+        })
         // 将该用户的未读消息全部设置为已读
         this.$http.post(Config.BASE_URL + Config.API.read, {uid: this.data.to}).then((response) => {
           console.log(response)

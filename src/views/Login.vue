@@ -56,7 +56,7 @@ export default {
         window.localStorage.setItem('token', response.json().token)
         window.localStorage.setItem('uid', response.json().uid)
         // 连接Websocket服务器
-        ws.connect()
+        ws.connect(response.json().uid)
         this.$router.go({name: 'chatlist'})
       }, (response) => {
         $.toast('登录失败')

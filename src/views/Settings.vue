@@ -8,13 +8,13 @@
     <ul>
       <li>
         <a href="#" class="item-link item-content">
-          <div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" style='width: 4rem;'></div>
+          <div class="item-media"><img src="{{ info.image_head }}" style='width: 4rem;'></div>
           <div class="item-inner">
             <div class="item-title-row">
-              <div class="item-title">标题</div>
+              <div class="item-title">{{ info.nickname }}</div>
             </div>
-            <div class="item-subtitle">标题</div>
-            <div class="item-text">此处是文本内容...</div>
+            <div class="item-subtitle">用户名: {{ info.username }}</div>
+            <div class="item-text">{{ info.motto }}</div>
           </div>
         </a>
       </li>
@@ -43,10 +43,27 @@
 <script>
 import Tabar from '../components/Tabar'
 import PHeader from '../components/PHeader'
+import Config from '../assets/js/config'
 
 export default {
   data: function () {
     return {
+      info: {}
+    }
+  },
+  route: {
+    data: function () {
+      let info = window.localStorage.getItem('info')
+      if (info) {
+        this.info = JSON.parse(info)
+      } else {
+        const _self = this
+        this.$http.get(Config.BASE_URL + Config.API.info).then((response) => {
+          console.log(response.json())
+          window.localStorage.setItem('info', JSON.stringify(response.json()))
+          _self.info = response.json()
+        })
+      }
     }
   },
   computed: {},
@@ -61,4 +78,8 @@ export default {
 </script>
 
 <style lang="css">
+.item-content .item-subtitle {
+  height: 25px;
+  line-height: 25px;
+}
 </style>

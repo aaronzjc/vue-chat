@@ -3,6 +3,8 @@ export default {
   API: {
     // 登录
     login: '/auth/login',
+    // 用户信息
+    info: '/info',
     // 好友列表
     friend: '/friend',
     // 未读消息列表

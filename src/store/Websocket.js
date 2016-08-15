@@ -18,11 +18,12 @@ const ws = {
         content: response.message,
         position: 'left'
       })
-      console.log(store)
+      console.log(event)
     }
     _self.ws.onclose = () => {
       // todo
       console.log('连接被关闭了')
+      // _self.connect()
       _self.ws = undefined
     }
   }
