@@ -20,7 +20,7 @@ npm test
 
 ## 预览
 
-![preview](https://github.com/aaronzjc/Personal_Toys/blob/master/Note/img/app.png)
+![preview](https://github.com/aaronzjc/vue-chat/blob/master/imgs/vue-chat.jpeg)
 
 ## 开发中...
 
