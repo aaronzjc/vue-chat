@@ -46,6 +46,13 @@ export default function (router) {
         require(['./views/EditInfo'], resolve)
       }
     },
+    '/about': {
+      name: 'about',
+      auth: true,
+      component: function (resolve) {
+        require(['./views/About'], resolve)
+      }
+    },
     '/chatbox/:uid': {
       name: 'chatbox',
       auth: true,

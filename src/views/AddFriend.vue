@@ -10,7 +10,7 @@
 <div class="content-block-title">检索结果</div>
 <div class="list-block media-list todo-items">
     <ul>
-      <!-- <Item @click="addFriend($index)" :user="user" v-for="user in userList"></Item> -->
+      <Item @click="addFriend($index)" :user="user" v-for="user in userList"></Item>
     </ul>
 </div>
 </div>
@@ -21,12 +21,13 @@
 import $ from 'zepto'
 import PHeader from '../components/PHeader'
 import SearchBar from '../components/SearchBar'
-// import Item from '../components/Item'
+import Item from '../components/Item'
+import Config from '../assets/js/config'
 
 export default {
   data: function () {
     return {
-      userList: [{name: 'Peter', subinfo: '我爱世界'}]
+      userList: []
     }
   },
   computed: {},
@@ -34,17 +35,38 @@ export default {
   attached: function () {},
   methods: {
     addFriend: function (index) {
-      $.toast(this.userList[index]['name'] + '添加成功!')
+      let i = index
+      let _self = this
+      $.confirm('确定添加好友？', '提示', function () {
+        let user = _self.userList[i]
+        let uid = window.localStorage.getItem('uid')
+        if (parseInt(uid) === parseInt(user['id'])) {
+          $.toast('不能添加自己为好友')
+          return false
+        }
+        _self.$http.post(Config.BASE_URL + Config.API.addFriend, {friend: user['id']}).then((response) => {
+          if (response.json().success) {
+            $.toast('添加成功')
+          } else {
+            $.toast(response.json().msg)
+          }
+        })
+      })
     }
   },
   events: {
     'doSearch': function (msg) {
-      $.toast(msg.keyword)
+      const _self = this
+      this.$http.post(Config.BASE_URL + Config.API.searchFriend, {keyword: msg.keyword}).then((response) => {
+        console.log(response)
+        _self.userList = response.json()
+      })
     }
   },
   components: {
     PHeader,
-    SearchBar
+    SearchBar,
+    Item
   }
 }
 </script>

@@ -72,8 +72,8 @@ export default {
         data: this.data
       }
       if (ws.ws === undefined) {
-        $.toast('连接已断开')
-        this.$router.go({name: 'login'})
+        $.toast('聊天服务器连接失败')
+        return false
       }
       // 通过Websocket发送出去
       ws.ws.send(JSON.stringify(data))
