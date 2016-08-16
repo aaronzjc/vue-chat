@@ -7,7 +7,7 @@
   <div class="list-block media-list">
     <ul>
       <li>
-        <a href="#" class="item-link item-content">
+        <a v-link="{name: 'editinfo'}" class="item-link item-content">
           <div class="item-media"><img src="{{ info.image_head }}" style='width: 4rem;'></div>
           <div class="item-inner">
             <div class="item-title-row">
@@ -79,7 +79,7 @@ export default {
 
 <style lang="css">
 .item-content .item-subtitle {
-  height: 25px;
-  line-height: 25px;
+  height: 30px;
+  line-height: 30px;
 }
 </style>

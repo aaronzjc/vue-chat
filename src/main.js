@@ -27,7 +27,7 @@ router.beforeEach((transition) => {
   }
   console.log('visiting' + transition.to.path)
   Vue.http.headers.common['Authorization'] = 'Bearer ' + token
-  if (ws.ws === undefined) {
+  if (ws.ws === undefined && transition.to.auth) {
     console.log('connection to ws...')
     ws.connect()
   }
