@@ -14,7 +14,7 @@
 </div>
 <div class="bar chat-input-box row">
     <div class="search-input col-80">
-      <input type="search" v-model="data.message" placeholder='输入消息...'/>
+      <input type="search" v-model="data.message" @focus="scrollTop" placeholder='输入消息...'/>
     </div>
     <a @click="sendMsg" class="button button-fill button-primary col-20">发送</a>
 </div>
@@ -31,6 +31,7 @@ import $ from 'zepto'
 export default {
   data: function () {
     return {
+      currentPage: 0,
       messageList: [],
       data: {
         message: '',
@@ -41,38 +42,51 @@ export default {
   },
   route: {
     data: function (transition) {
-      const _self = this
       if (transition.to.params) {
         this.data.to = transition.to.params.uid
         this.data.from = window.localStorage.getItem('uid')
-        // 初始化聊天记录
-        this.$http.get(Config.BASE_URL + Config.API.preMessages + '/' + this.data.to).then((response) => {
-          console.log(response.json())
-          // 消息获取成功才可以
-          _self.messageList = response.json()
-          store.messageList = _self.messageList
-        }, (response) => {
-          if (response.status === 401) {
-            this.$router.go({name: 'login'})
-          }
-        })
+        this.getMessages()
+        // 保存至全局数组，这样是为了ws来消息了，同步更新这里
+        store.messageList = this.messageList
         // 将该用户的未读消息全部设置为已读
         this.$http.post(Config.BASE_URL + Config.API.read, {uid: this.data.to}).then((response) => {
-          console.log(response)
+          // do nothing
         })
       }
     }
   },
   computed: {},
-  int: function () {
+  ready: function () {
+    $.init()
+    $.refreshScroller()
+    const _self = this
     $(document).on('refresh', '.pull-to-refresh-content', function (e) {
-      $.toast('下拉刷新')
+      _self.getMessages()
+      $.pullToRefreshDone('.pull-to-refresh-content')
+      $.refreshScroller()
     })
   },
-  ready: function () {},
   attached: function () {},
   methods: {
+    scrollTop: function () {
+      $('.chat-list').scrollTop(1000000)
+    },
+    getMessages: function () {
+      let _self = this
+      this.$http.post(Config.BASE_URL + Config.API.preMessages, {page: this.currentPage, uid: this.data.to}).then((response) => {
+        let messages = response.json()
+        if (messages.length > 0) {
+          _self.messageList = messages.concat(_self.messageList)
+          _self.currentPage = _self.currentPage + 1
+        }
+      }, (response) => {
+        if (response.status === 401) {
+          this.$router.go({name: 'login'})
+        }
+      })
+    },
     sendMsg: function () {
+      $('.chat-list').scrollTop(1000000)
       if (this.data.message === '') {
         return false
       }
@@ -88,7 +102,6 @@ export default {
       ws.ws.send(JSON.stringify(data))
       // 界面更新，发送消息在右边
       this.messageList.push({content: this.data.message, position: 'right'})
-      console.log(store)
       // 清空输入框
       this.data.message = ''
     }
