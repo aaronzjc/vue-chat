@@ -5,7 +5,11 @@
   返回
 </button>
 </p-header>
-<div class="content native-scroll chat-list">
+<div class="content pull-to-refresh-content chat-list" data-ptr-distance="55">
+  <div class="pull-to-refresh-layer">
+      <div class="preloader"></div>
+      <div class="pull-to-refresh-arrow"></div>
+  </div>
 <message-list :message-list="messageList"></message-list>
 </div>
 <div class="bar chat-input-box row">
@@ -60,6 +64,11 @@ export default {
     }
   },
   computed: {},
+  int: function () {
+    $(document).on('refresh', '.pull-to-refresh-content', function (e) {
+      $.toast('下拉刷新')
+    })
+  },
   ready: function () {},
   attached: function () {},
   methods: {

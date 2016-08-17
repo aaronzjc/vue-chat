@@ -8,7 +8,7 @@
     <ul>
       <li>
         <a v-link="{name: 'editinfo'}" class="item-link item-content">
-          <div class="item-media"><img src="{{ info.image_head }}" style='width: 4rem;'></div>
+          <div class="item-media"><img :src="info.image_head" style='width: 4rem;'></div>
           <div class="item-inner">
             <div class="item-title-row">
               <div class="item-title">{{ info.nickname }}</div>

@@ -2,7 +2,7 @@
 <li>
   <div class="item-content">
     <div class="item-media">
-      <img src="{{ user.image_head }}" style='width: 2.2rem;'>
+      <img :src="user.image_head" style='width: 2.2rem;'>
     </div>
     <div class="item-inner">
       <div class="item-title-row">
