@@ -37,7 +37,6 @@
 
 > 动画这里，有个小问题，vue-router完整支持transition模式。但是要求vue-router的路由组件不能是[片段实例](https://vuejs.org.cn/guide/components.html#片断实例)。
 
-* Fastclick
 * ~~图片上传，因为没找到好的方式呈现，所以就没做~~
 
 > 1. 上传按钮美化。隐藏掉默认，然后，设置容器样式。
