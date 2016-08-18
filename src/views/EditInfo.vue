@@ -7,7 +7,20 @@
 </button>
 </p-header>
 <div class="content">
-  <div class="content-block-title">我的资料</div>
+  <div class="content-block-title">头像</div>
+  <div class="list-block media-list edit-header">
+    <ul>
+      <li class="item-link">
+        <div class="item-content">
+          <div class="item-media"><img :src="info.image_head" style='width: 2.2rem;'></div>
+          <div class="item-inner">
+            <input type="file" name="upload" class="file-upload" @change="uploadFile">
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="content-block-title edit-divider">基本资料</div>
   <div class="list-block">
     <ul>
       <!-- Text inputs -->
@@ -102,6 +115,18 @@ export default {
         window.localStorage.setItem('info', JSON.stringify(response.json().user))
         this.info = response.json().user
       })
+    },
+    uploadFile: function () {
+      let file = document.querySelector('input[type=file]').files[0]
+      let reader = new window.FileReader()
+      let _self = this
+      reader.addEventListener('load', function () {
+        _self.info.image_head = reader.result
+      }, false)
+      if (file) {
+        reader.readAsDataURL(file)
+        console.log(reader)
+      }
     }
   },
   components: {
@@ -111,4 +136,20 @@ export default {
 </script>
 
 <style lang="css">
+.file-upload {
+  position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 30px;
+    cursor: pointer;
+    opacity: 0;
+}
+.list-block.media-list.edit-header {
+  margin-bottom: 15px;
+}
+.content-block-title.edit-divider {
+  margin-top: 15px;
+}
 </style>

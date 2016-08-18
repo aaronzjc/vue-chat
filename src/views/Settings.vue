@@ -7,7 +7,7 @@
   <div class="content-block-title">个人信息</div>
   <div class="list-block media-list">
     <ul>
-      <li>
+      <li class="animated" :class="{'wobble': isShake}">
         <a v-link="{name: 'editinfo'}" class="item-link item-content">
           <div class="item-media"><img :src="info.image_head" style='width: 4rem;'></div>
           <div class="item-inner">
@@ -24,13 +24,13 @@
   <div class="content-block-title">其他功能</div>
   <div class="list-block">
     <ul>
-      <li class="item-content item-link">
+      <li class="item-content item-link" @click="quan">
         <div class="item-media"><i class="icon icon-f7"></i></div>
         <div class="item-inner">
           <div class="item-title">朋友圈</div>
         </div>
       </li>
-      <li class="item-content item-link">
+      <li class="item-content item-link" @click="shake">
         <div class="item-media"><i class="icon icon-f7"></i></div>
         <div class="item-inner">
           <div class="item-title">摇一摇</div>
@@ -52,14 +52,17 @@
 </template>
 
 <script>
+require('../assets/css/animate.css')
 import Tabar from '../components/Tabar'
 import PHeader from '../components/PHeader'
 import Config from '../assets/js/config'
+import $ from 'zepto'
 
 export default {
   data: function () {
     return {
-      info: {}
+      info: {},
+      isShake: false
     }
   },
   route: {
@@ -85,6 +88,15 @@ export default {
       // 清除缓存和登录的数据
       window.localStorage.clear()
       this.$router.go({name: 'login'})
+    },
+    shake: function () {
+      this.isShake = true
+      setTimeout(() => {
+        this.isShake = false
+      }, 1000)
+    },
+    quan: function () {
+      $.toast('我没有朋友圈')
     }
   },
   components: {
