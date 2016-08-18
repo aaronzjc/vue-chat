@@ -1,4 +1,5 @@
 <template>
+<div>
 <p-header title="聊天">
   <button class="button button-link button-nav pull-left" @click="this.$router.go({'name': 'chatlist'})">
   <span class="icon icon-left"></span>
@@ -17,6 +18,7 @@
       <input type="search" v-model="data.message" @focus="scrollTop" placeholder='输入消息...'/>
     </div>
     <a @click="sendMsg" class="button button-fill button-primary col-20">发送</a>
+</div>
 </div>
 </template>
 

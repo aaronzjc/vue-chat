@@ -4,6 +4,8 @@
 
 ## 构建
 
+Server端还未上传。待开发完成后，再整理上传。
+
 ``` bash
 # install dependencies
 npm install

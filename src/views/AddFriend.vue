@@ -1,4 +1,5 @@
 <template>
+<div>
 <p-header title="添加好友">
 <button class="button button-link button-nav pull-left" @click="this.$router.go({name: 'friends'})">
   <span class="icon icon-left"></span>
@@ -14,7 +15,7 @@
     </ul>
 </div>
 </div>
-
+</div>
 </template>
 
 <script>

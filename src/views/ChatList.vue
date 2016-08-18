@@ -1,8 +1,10 @@
 <template>
-<p-header title='聊天'>
+<div>
+<p-header title='消息'>
 </p-header>
 <Tabar></Tabar>
 <chat-list :chat-list="chatList" title="未读消息"></chat-list>
+</div>
 </template>
 
 <script>

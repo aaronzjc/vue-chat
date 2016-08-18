@@ -1,4 +1,5 @@
 <template>
+<div>
 <p-header title='编辑信息'>
   <button class="button button-link button-nav pull-left" @click="this.$router.go({'name': 'settings'})">
   <span class="icon icon-left"></span>
@@ -73,6 +74,7 @@
   <div class="content-block">
     <a class="button button-big button-fill button-success" @click="saveInfo">保存信息</a>
   </div>
+</div>
 </div>
 </template>
 

@@ -1,4 +1,5 @@
 <template>
+<div>
 <p-header title="登录"></p-header>
 <!-- 这里是页面内容区 -->
 <div class="content native-scroll">
@@ -30,6 +31,7 @@
   <div class="content-block">
       <p><a v-on:click="login" class="button button-big button-fill">登录</a></p>
   </div>
+</div>
 </div>
 </template>
 

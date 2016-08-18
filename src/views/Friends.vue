@@ -1,4 +1,5 @@
 <template>
+<div>
 <p-header title='好友'>
   <button class="button button-link button-nav pull-right" @click="this.$router.go({name:'addFriend'})">
     添加
@@ -6,6 +7,7 @@
 </p-header>
 <Tabar></Tabar>
 <group-list :groups="groups"></group-list>
+</div>
 </template>
 
 <script>

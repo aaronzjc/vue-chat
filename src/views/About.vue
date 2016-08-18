@@ -1,4 +1,5 @@
 <template>
+<div>
 <p-header title='关于'>
   <button class="button button-link button-nav pull-left" @click="this.$router.go({'name': 'settings'})">
   <span class="icon icon-left"></span>
@@ -10,6 +11,7 @@
     <h3>Vue-Chat</h3>
     <p>个人学习项目<br/>@memosa</p>
   </div>
+</div>
 </div>
 </template>
 

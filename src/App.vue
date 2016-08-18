@@ -11,3 +11,11 @@ export default {
   }
 }
 </script>
+<style>
+.fade-transition {
+  transition: opacity .1s ease;
+}
+.fade-enter, .fade-leave {
+  opacity: 0;
+}
+</style>

@@ -1,5 +1,6 @@
 <template>
-<p-header title='设置'>
+<div>
+<p-header title='发现'>
 </p-header>
 <Tabar></Tabar>
 <div class="content">
@@ -46,6 +47,7 @@
   <div class="content-block">
     <a class="button button-big button-fill button-danger" @click="logout">退出登录</a>
   </div>
+</div>
 </div>
 </template>
 
