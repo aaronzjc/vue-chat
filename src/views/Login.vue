@@ -3,6 +3,9 @@
 <p-header title="登录"></p-header>
 <!-- 这里是页面内容区 -->
 <div class="content native-scroll">
+  <div class="text-content resigter">
+    <h2>VChat</h2>
+  </div>
   <div class="content-block">
       <div class="list-block">
           <ul>
@@ -29,7 +32,7 @@
       </div>
   </div>
   <div class="content-block">
-      <p><a v-on:click="login" class="button button-big button-fill">登录</a></p>
+      <p><a v-on:click="login" class="button button-big button-fill">免注册登录</a></p>
   </div>
 </div>
 </div>
@@ -51,18 +54,30 @@ export default {
   ready () {},
   methods: {
     login () {
+      if (this.username === '') {
+        $.toast('用户名不能为空')
+        return
+      }
+      if (this.password === '') {
+        $.toast('密码不能为空')
+        return
+      }
       this.$http.post(Config.BASE_URL + Config.API.login, {
         username: this.username,
         password: this.password
       }).then((response) => {
         window.localStorage.setItem('token', response.json().token)
-        window.localStorage.setItem('uid', response.json().uid)
+        window.localStorage.setItem('uid', response.json().user.id)
+        window.localStorage.setItem('info', JSON.stringify(response.json().user))
         // 连接Websocket服务器
         ws.connect(response.json().uid)
         this.$router.go({name: 'chatlist'})
       }, (response) => {
         $.toast('登录失败')
       })
+    },
+    register () {
+      this.$router.go({name: 'register'})
     }
   },
   components: {
@@ -70,3 +85,11 @@ export default {
   }
 }
 </script>
+
+<style>
+.text-content {
+  width: 100%;
+  margin:20px 0px;
+  text-align: center;
+}
+</style>
