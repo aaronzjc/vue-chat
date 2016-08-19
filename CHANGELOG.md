@@ -32,7 +32,7 @@
 
 ### 2016.08.17
 
-* 完善一些流程，例如，注册等
+* ~~完善一些流程，例如，注册等~~
 * ~~动画动画动画，增加一点转场动画~~
 
 > 动画这里，有个小问题，vue-router完整支持transition模式。但是要求vue-router的路由组件不能是[片段实例](https://vuejs.org.cn/guide/components.html#片断实例)。
