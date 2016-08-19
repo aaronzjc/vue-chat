@@ -13,11 +13,13 @@ const ws = {
     }
     _self.ws.onmessage = (event) => {
       let response = JSON.parse(event.data)
+      // 聊天界面更新消息
       store.messageList.push({
         content: response.message,
         position: 'left'
       })
       store.unreadCnt = store.unreadCnt + 1
+      // 更新聊天的列表
       console.log(store)
     }
     _self.ws.onclose = () => {

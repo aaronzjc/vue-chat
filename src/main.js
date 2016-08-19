@@ -10,7 +10,7 @@ Vue.use(VueRouter)
 Vue.use(VueResource)
 
 // 路由配置
-var router = new VueRouter({
+let router = new VueRouter({
   hashbang: true,
   history: false,
   saveScrollPosition: true,
@@ -21,7 +21,8 @@ RouterConfig(router)
 // 前置的访问判断Auth是否正确
 // 访问判断，长连接服务是否正常。不正常重新连接。
 router.beforeEach((transition) => {
-  if (['chatbox', 'addFriend'].indexOf(transition.to.name) !== -1) {
+  // 控制AppBar的显示
+  if (['chatbox', 'addFriend', 'login'].indexOf(transition.to.name) !== -1) {
     router.app.isIndex = false
   } else {
     router.app.isIndex = true

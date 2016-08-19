@@ -75,6 +75,10 @@ export default {
           console.log(response.json())
           window.localStorage.setItem('info', JSON.stringify(response.json()))
           _self.info = response.json()
+        }, (response) => {
+          if (response.status === 401) {
+            this.$router.go({naem: 'login'})
+          }
         })
       }
     }

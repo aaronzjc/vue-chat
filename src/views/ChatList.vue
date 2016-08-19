@@ -25,15 +25,19 @@ export default {
   },
   computed: {},
   created: function () {
-    console.log('created')
+    // console.log('created')
     const _self = this
     this.$http.get(Config.BASE_URL + Config.API.chatList).then((response) => {
-      _self.chatList = response.json().chatList
+      console.log(this.chatList)
+      store.chatList = _self.chatList = response.json().chatList
       // 更新全局消息未读数
       store.updateUnread(response.json().unreadCnt)
       _self.$dispatch('updateUnread')
-      window.localStorage.setItem('chat-list', JSON.stringify(response.json().chatList))
+      // window.localStorage.setItem('chat-list', JSON.stringify(response.json().chatList))
     }, (response) => {
+      if (response.status === 401) {
+        this.$router.go({naem: 'login'})
+      }
       console.log('请求聊天列表失败')
     })
   },
