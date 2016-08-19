@@ -1,6 +1,6 @@
 <template>
   <div class="page page-current">
-      <Tabar></Tabar>
+      <Tabar v-if="isIndex" :unread-cnt="store.unreadCnt"></Tabar>
       <router-view transition="fade" transition-mode="out-in"></router-view>
   </div>
 </template>
@@ -11,7 +11,10 @@ import {store} from './store/GlobalStore'
 
 export default {
   data () {
-    return {}
+    return {
+      isIndex: true,
+      store: store
+    }
   },
   events: {
     'updateUnread': function () {
