@@ -53,7 +53,6 @@
 
 <script>
 require('../assets/css/animate.css')
-import Tabar from '../components/Tabar'
 import PHeader from '../components/PHeader'
 import Config from '../assets/js/config'
 import $ from 'zepto'
@@ -100,7 +99,6 @@ export default {
     }
   },
   components: {
-    Tabar,
     PHeader
   }
 }

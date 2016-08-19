@@ -5,13 +5,11 @@
     添加
   </button>
 </p-header>
-<Tabar></Tabar>
 <group-list :groups="groups"></group-list>
 </div>
 </template>
 
 <script>
-import Tabar from '../components/Tabar'
 import PHeader from '../components/PHeader'
 import GroupList from '../components/contact-list/GroupList.vue'
 import Config from '../assets/js/config'
@@ -43,7 +41,6 @@ export default {
   attached: function () {},
   methods: {},
   components: {
-    Tabar,
     PHeader,
     GroupList
   }

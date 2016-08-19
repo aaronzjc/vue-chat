@@ -28,12 +28,7 @@ export default {
   },
   computed: {
     hasMessage: function () {
-      return this.unreadCnt > 0
-    }
-  },
-  events: {
-    'updateUnread': function () {
-      this.unreadCnt = store.unreadCnt
+      return store.unreadCnt > 0
     }
   }
 }

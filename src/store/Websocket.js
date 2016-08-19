@@ -12,13 +12,13 @@ const ws = {
       console.log(event)
     }
     _self.ws.onmessage = (event) => {
-      console.log(event)
       let response = JSON.parse(event.data)
       store.messageList.push({
         content: response.message,
         position: 'left'
       })
-      console.log(event)
+      store.unreadCnt = store.unreadCnt + 1
+      console.log(store)
     }
     _self.ws.onclose = () => {
       // todo

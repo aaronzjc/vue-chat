@@ -1,8 +1,7 @@
 <template>
-<div>
+<div class="chat-list">
 <p-header title='消息'>
 </p-header>
-<Tabar></Tabar>
 <chat-list :chat-list="chatList" title="未读消息"></chat-list>
 </div>
 </template>
@@ -32,7 +31,7 @@ export default {
       _self.chatList = response.json().chatList
       // 更新全局消息未读数
       store.updateUnread(response.json().unreadCnt)
-      _self.$broadcast('updateUnread')
+      _self.$dispatch('updateUnread')
       window.localStorage.setItem('chat-list', JSON.stringify(response.json().chatList))
     }, (response) => {
       console.log('请求聊天列表失败')

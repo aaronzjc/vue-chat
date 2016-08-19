@@ -47,9 +47,15 @@ export default {
       if (transition.to.params) {
         this.data.to = transition.to.params.uid
         this.data.from = window.localStorage.getItem('uid')
-        this.getMessages()
-        // 保存至全局数组，这样是为了ws来消息了，同步更新这里
-        store.messageList = this.messageList
+        this.$http.post(Config.BASE_URL + Config.API.preMessages, {page: 0, uid: this.data.to}).then((response) => {
+          let messages = response.json()
+          // 保存至全局数组，这样是为了ws来消息了，同步更新这里
+          store.messageList = this.messageList = messages
+        }, (response) => {
+          if (response.status === 401) {
+            this.$router.go({name: 'login'})
+          }
+        })
         // 将该用户的未读消息全部设置为已读
         this.$http.post(Config.BASE_URL + Config.API.read, {uid: this.data.to}).then((response) => {
           // do nothing
