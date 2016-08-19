@@ -35,17 +35,16 @@ export default {
   ready: function () {},
   attached: function () {},
   methods: {
-    addFriend: function (index) {
+    addFriend: (index) => {
       let i = index
-      let _self = this
-      $.confirm('确定添加好友？', '提示', function () {
-        let user = _self.userList[i]
+      $.confirm('确定添加好友？', '提示', () => {
+        let user = this.userList[i]
         let uid = window.localStorage.getItem('uid')
         if (parseInt(uid) === parseInt(user['id'])) {
           $.toast('不能添加自己为好友')
           return false
         }
-        _self.$http.post(Config.BASE_URL + Config.API.addFriend, {friend: user['id']}).then((response) => {
+        this.$http.post(Config.BASE_URL + Config.API.addFriend, {friend: user['id']}).then((response) => {
           if (response.json().success) {
             $.toast('添加成功')
           } else {
@@ -57,10 +56,8 @@ export default {
   },
   events: {
     'doSearch': function (msg) {
-      const _self = this
       this.$http.post(Config.BASE_URL + Config.API.searchFriend, {keyword: msg.keyword}).then((response) => {
-        console.log(response)
-        _self.userList = response.json()
+        this.userList = response.json()
       })
     }
   },

@@ -2,7 +2,7 @@
 <div class="chat-list">
 <p-header title='消息'>
 </p-header>
-<chat-list :chat-list="chatList" title="未读消息"></chat-list>
+<chat-list title="未读消息"></chat-list>
 </div>
 </template>
 
@@ -10,8 +10,6 @@
 import Tabar from '../components/Tabar'
 import PHeader from '../components/PHeader'
 import ChatList from '../components/chat-list/ItemList'
-import Config from '../assets/js/config'
-import {store} from '../store/GlobalStore'
 
 export default {
   data: function () {
@@ -24,27 +22,8 @@ export default {
     }
   },
   computed: {},
-  created: function () {
-    // console.log('created')
-    const _self = this
-    this.$http.get(Config.BASE_URL + Config.API.chatList).then((response) => {
-      console.log(this.chatList)
-      store.chatList = _self.chatList = response.json().chatList
-      // 更新全局消息未读数
-      store.updateUnread(response.json().unreadCnt)
-      _self.$dispatch('updateUnread')
-      // window.localStorage.setItem('chat-list', JSON.stringify(response.json().chatList))
-    }, (response) => {
-      if (response.status === 401) {
-        this.$router.go({naem: 'login'})
-      }
-      console.log('请求聊天列表失败')
-    })
-  },
-  ready: function () {
-    console.log('ready')
-    this.chatList = JSON.parse(window.localStorage.getItem('chat-list'))
-  },
+  created: function () {},
+  ready: function () {},
   attached: function () {},
   methods: {},
   components: {

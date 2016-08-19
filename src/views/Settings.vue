@@ -55,6 +55,7 @@
 require('../assets/css/animate.css')
 import PHeader from '../components/PHeader'
 import Config from '../assets/js/config'
+import {ws} from '../store/Websocket'
 import $ from 'zepto'
 
 export default {
@@ -90,6 +91,7 @@ export default {
     logout: function () {
       // 清除缓存和登录的数据
       window.localStorage.clear()
+      ws.ws.close()
       this.$router.go({name: 'login'})
     },
     shake: function () {

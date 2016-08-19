@@ -1,6 +1,6 @@
 <template>
   <div class="page page-current">
-      <Tabar v-if="isIndex" :unread-cnt="store.unreadCnt"></Tabar>
+      <Tabar v-if="isIndex" :unread-cnt="unreadCnt.cnt"></Tabar>
       <router-view transition="fade" transition-mode="out-in"></router-view>
   </div>
 </template>
@@ -13,14 +13,14 @@ export default {
   data () {
     return {
       isIndex: true,
-      store: store
+      unreadCnt: store.unread
     }
   },
-  events: {
-    'updateUnread': function () {
-      this.unreadCnt = store.unreadCnt
-    }
-  },
+  // events: {
+  //   'updateUnread': function () {
+  //     this.unreadCnt = store.unreadCnt
+  //   }
+  // },
   components: {
     Tabar
   }

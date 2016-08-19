@@ -18,9 +18,18 @@ const ws = {
         content: response.message,
         position: 'left'
       })
-      store.unreadCnt = store.unreadCnt + 1
+      store.unread.cnt = store.unread.cnt + 1
       // 更新聊天的列表
-      console.log(store)
+      let flag = false
+      for (let i in store.chatList) {
+        if (store.chatList[i]['id'] === response.id) {
+          flag = true
+          store.chatList[i]['unreadCnt'] = store.chatList[i]['unreadCnt'] + response.unreadCnt
+        }
+      }
+      if (flag === false) {
+        store.chatList.push(response)
+      }
     }
     _self.ws.onclose = () => {
       // todo
