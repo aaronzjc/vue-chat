@@ -35,14 +35,14 @@ export default {
   ready: function () {},
   attached: function () {},
   methods: {
-    addFriend: (index) => {
+    addFriend: function (index) {
       let i = index
       $.confirm('确定添加好友？', '提示', () => {
         let user = this.userList[i]
         let uid = window.localStorage.getItem('uid')
         if (parseInt(uid) === parseInt(user['id'])) {
           $.toast('不能添加自己为好友')
-          return false
+          return
         }
         this.$http.post(Config.BASE_URL + Config.API.addFriend, {friend: user['id']}).then((response) => {
           if (response.json().success) {

@@ -45,7 +45,7 @@ import $ from 'zepto'
 import {ws} from '../store/Websocket'
 
 export default {
-  data () {
+  data: () => {
     return {
       username: '',
       password: ''
@@ -53,7 +53,7 @@ export default {
   },
   ready () {},
   methods: {
-    login () {
+    login: function () {
       if (this.username === '') {
         $.toast('用户名不能为空')
         return
@@ -66,6 +66,7 @@ export default {
         username: this.username,
         password: this.password
       }).then((response) => {
+        // 存储缓存
         window.localStorage.setItem('token', response.json().token)
         window.localStorage.setItem('uid', response.json().user.id)
         window.localStorage.setItem('info', JSON.stringify(response.json().user))
@@ -75,9 +76,6 @@ export default {
       }, (response) => {
         $.toast('登录失败')
       })
-    },
-    register () {
-      this.$router.go({name: 'register'})
     }
   },
   components: {

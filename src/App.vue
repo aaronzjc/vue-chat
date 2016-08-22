@@ -16,11 +16,6 @@ export default {
       unreadCnt: store.unread
     }
   },
-  // events: {
-  //   'updateUnread': function () {
-  //     this.unreadCnt = store.unreadCnt
-  //   }
-  // },
   components: {
     Tabar
   }

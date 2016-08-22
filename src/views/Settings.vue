@@ -2,7 +2,6 @@
 <div>
 <p-header title='发现'>
 </p-header>
-<Tabar></Tabar>
 <div class="content">
   <div class="content-block-title">个人信息</div>
   <div class="list-block media-list">
@@ -71,15 +70,10 @@ export default {
       if (info) {
         this.info = JSON.parse(info)
       } else {
-        const _self = this
         this.$http.get(Config.BASE_URL + Config.API.info).then((response) => {
           console.log(response.json())
           window.localStorage.setItem('info', JSON.stringify(response.json()))
-          _self.info = response.json()
-        }, (response) => {
-          if (response.status === 401) {
-            this.$router.go({naem: 'login'})
-          }
+          this.info = response.json()
         })
       }
     }

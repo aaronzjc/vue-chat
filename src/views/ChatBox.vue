@@ -62,9 +62,9 @@ export default {
   ready: function () {
     $.init()
     $.refreshScroller()
-    const _self = this
-    $(document).on('refresh', '.pull-to-refresh-content', function (e) {
-      _self.getMessages()
+    // 下拉刷新
+    $(document).on('refresh', '.pull-to-refresh-content', (e) => {
+      this.getMessages()
       $.pullToRefreshDone('.pull-to-refresh-content')
       $.refreshScroller()
     })
@@ -75,12 +75,11 @@ export default {
       $('.chat-list').scrollTop(1000000)
     },
     getMessages: function () {
-      let _self = this
       this.$http.post(Config.BASE_URL + Config.API.preMessages, {page: this.currentPage, uid: this.data.to}).then((response) => {
         let messages = response.json()
         if (messages.length > 0) {
-          _self.messageList = messages.concat(_self.messageList)
-          _self.currentPage = _self.currentPage + 1
+          this.messageList = messages.concat(this.messageList)
+          this.currentPage = this.currentPage + 1
         }
       }, (response) => {
         if (response.status === 401) {
@@ -91,7 +90,7 @@ export default {
     sendMsg: function () {
       $('.chat-list').scrollTop(1000000)
       if (this.data.message === '') {
-        return false
+        return
       }
       let data = {
         cmd: 'chat',
@@ -99,7 +98,7 @@ export default {
       }
       if (ws.ws === undefined) {
         $.toast('聊天服务器连接失败')
-        return false
+        return
       }
       // 通过Websocket发送出去
       ws.ws.send(JSON.stringify(data))

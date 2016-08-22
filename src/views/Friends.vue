@@ -23,9 +23,8 @@ export default {
   computed: {},
   route: {
     data: function () {
-      const _self = this
       this.$http.get(Config.BASE_URL + Config.API.friend).then((response) => {
-        _self.groups = response.data
+        this.groups = response.data
         window.localStorage.setItem('contact-list', JSON.stringify(response.data))
       }, (response) => {
         if (response.status === 401) {

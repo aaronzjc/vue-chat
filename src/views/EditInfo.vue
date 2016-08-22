@@ -119,9 +119,8 @@ export default {
     uploadFile: function () {
       let file = document.querySelector('input[type=file]').files[0]
       let reader = new window.FileReader()
-      let _self = this
-      reader.addEventListener('load', function () {
-        _self.info.image_head = reader.result
+      reader.addEventListener('load', () => {
+        this.info.image_head = reader.result
       }, false)
       if (file) {
         reader.readAsDataURL(file)

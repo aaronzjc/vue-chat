@@ -39,7 +39,7 @@ router.beforeEach((transition) => {
   }
   transition.next()
 })
-
+// 异常请求处理
 Vue.http.interceptors.push((request, next) => {
   next((response) => {
     if (response.status === 401) {
