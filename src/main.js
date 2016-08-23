@@ -22,7 +22,7 @@ RouterConfig(router)
 // 访问判断，长连接服务是否正常。不正常重新连接。
 router.beforeEach((transition) => {
   // 控制AppBar的显示
-  if (['chatbox', 'addFriend', 'login', 'editinfo'].indexOf(transition.to.name) !== -1) {
+  if ([undefined, 'chatbox', 'addFriend', 'login', 'editinfo'].indexOf(transition.to.name) !== -1) {
     router.app.isIndex = false
   } else {
     router.app.isIndex = true

@@ -1,6 +1,7 @@
 export default function (router) {
   router.map({
     '*': {
+      name: 'index',
       component: function (resolve) {
         require(['./views/login'], resolve)
       }
