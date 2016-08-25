@@ -1,8 +1,8 @@
 import {store} from './GlobalStore'
 
 const ws = {
-  url: 'ws://chat.xyz.laravel:9501/?uid=',
-  // url: 'ws://chat.memosa.cn:9507/?uid=',
+  // url: 'ws://chat.xyz.laravel:9501/?uid=',
+  url: 'ws://chat.memosa.cn:9507/?uid=',
   ws: undefined,
   connect: function () {
     const _self = this

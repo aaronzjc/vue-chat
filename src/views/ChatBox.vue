@@ -15,7 +15,7 @@
 </div>
 <div class="bar chat-input-box row">
     <div class="search-input col-80">
-      <input type="search" v-model="data.message" @focus="scrollTop" placeholder='输入消息...'/>
+      <input type="search" v-model="data.message" @focus="scrollTop" @keyup.enter="sendMsg" placeholder='输入消息...'/>
     </div>
     <a @click="sendMsg" class="button button-fill button-primary col-20">发送</a>
 </div>

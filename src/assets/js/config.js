@@ -1,6 +1,6 @@
 export default {
-  BASE_URL: 'http://chat.xyz.laravel/api',
-  // BASE_URL: 'http://chat.memosa.cn/api',
+  // BASE_URL: 'http://chat.xyz.laravel/api',
+  BASE_URL: 'http://chat.memosa.cn/api',
   API: {
     // 登录
     login: '/auth/login',
