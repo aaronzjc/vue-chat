@@ -4,8 +4,8 @@
   <div class="item-content">
     <div class="item-inner">
       <div @click="chat(item)" class="item-title contact-name">{{ item.nickname }}</div>
-      <div class="item-motto">
-        <i>🕓 </i>今天天气真好呀~
+      <div v-show="item.motto" class="item-motto">
+        <i>🕓 </i>{{ item.motto }}
       </div>
     </div>
   </div>
