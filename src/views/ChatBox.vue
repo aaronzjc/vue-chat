@@ -1,6 +1,6 @@
 <template>
 <div>
-<p-header title="聊天">
+<p-header :title="chatname">
   <button class="button button-link button-nav pull-left" @click="this.$router.go({'name': 'chatlist'})">
   <span class="icon icon-left"></span>
   返回
@@ -39,17 +39,22 @@ export default {
         message: '',
         from: '',
         to: ''
-      }
+      },
+      chatname: '聊天'
     }
   },
   route: {
     data: function (transition) {
+      this.messageList = store.messageList
       if (transition.to.params) {
         this.data.to = transition.to.params.uid
         this.data.from = window.localStorage.getItem('uid')
-        this.$http.post(Config.BASE_URL + Config.API.preMessages, {page: 0, uid: this.data.to}).then((response) => {
+        this.$http.post(Config.BASE_URL + Config.API.preMessages, {page: this.currentPage, uid: this.data.to}).then((response) => {
           // 保存至全局数组，这样是为了ws来消息了，同步更新这里
-          store.messageList = this.messageList = response.json()
+          store.messageList = this.messageList = response.json().messages
+          this.chatname = response.json().chatname
+          // 更新分页
+          this.currentPage = this.currentPage + 1
         })
         // 将该用户的未读消息全部设置为已读
         this.$http.post(Config.BASE_URL + Config.API.read, {uid: this.data.to}).then((response) => {
@@ -76,14 +81,11 @@ export default {
     },
     getMessages: function () {
       this.$http.post(Config.BASE_URL + Config.API.preMessages, {page: this.currentPage, uid: this.data.to}).then((response) => {
-        let messages = response.json()
+        let messages = response.json().messages
+        this.chatname = response.json().chatname
         if (messages.length > 0) {
           this.messageList = messages.concat(this.messageList)
           this.currentPage = this.currentPage + 1
-        }
-      }, (response) => {
-        if (response.status === 401) {
-          this.$router.go({name: 'login'})
         }
       })
     },

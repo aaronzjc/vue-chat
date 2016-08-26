@@ -8,7 +8,7 @@
       <div class="item-title-row">
         <div class="item-title">{{ user.name }}</div>
       </div>
-      <div class="item-subtitle">{{ user.motto }}</div>
+      <div class="item-subtitle"></div>
       <span v-show="user.unreadCnt > 0" class="chat--badge">{{ user.unreadCnt }}</span>
     </div>
 
