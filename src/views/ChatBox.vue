@@ -45,14 +45,16 @@ export default {
   },
   route: {
     data: function (transition) {
-      this.messageList = store.messageList
+      console.log(store.messageList)
+      if (store.messageList === undefined) {
+        this.messageList = []
+      }
       if (transition.to.params) {
         this.data.to = transition.to.params.uid
         this.data.from = window.localStorage.getItem('uid')
         this.$http.post(Config.BASE_URL + Config.API.preMessages, {page: this.currentPage, uid: this.data.to}).then((response) => {
           // 保存至全局数组，这样是为了ws来消息了，同步更新这里
-          store.messageList = this.messageList = response.json().messages
-          this.chatname = response.json().chatname
+          store.messageList = this.messageList = response.json()
           // 更新分页
           this.currentPage = this.currentPage + 1
         })
