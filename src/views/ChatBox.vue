@@ -83,8 +83,7 @@ export default {
     },
     getMessages: function () {
       this.$http.post(Config.BASE_URL + Config.API.preMessages, {page: this.currentPage, uid: this.data.to}).then((response) => {
-        let messages = response.json().messages
-        this.chatname = response.json().chatname
+        let messages = response.json()
         if (messages.length > 0) {
           this.messageList = messages.concat(this.messageList)
           this.currentPage = this.currentPage + 1
